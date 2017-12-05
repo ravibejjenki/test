@@ -4,120 +4,120 @@ global $CFG;
 require_once($CFG->dirroot . '/blocks/learning_plan/renderer.php');
 
 class block_manage_renderer extends plugin_renderer_base {   
-	// function display_tabs(){
-	//	  global $DB, $USER, $OUTPUT, $PAGE;
-	//
-	//	  $data = '';
-	//	  $data = html_writer:: start_tag('div', array('id'=>'mytabs'));
-	//		   $data .= html_writer:: start_tag('ul', array());
-	//		   
-	//				$tab1url = new moodle_url('#mycourses', array());
-	//				$tab1link = html_writer:: link($tab1url, get_string('mycourses'), array());
-	//				
-	//				$tab2url = new moodle_url('#mylearningplans', array());
-	//				$tab2link = html_writer:: link($tab2url, 'My Learing plans', array());
-	//				
-	//				$data .= html_writer:: tag('li', $tab1link,array());
-	//				$data .= html_writer:: tag('li', $tab2link ,array());
-	//				
-	//		   $data .= html_writer:: end_tag('ul');
-	//		   
-	//		   if(is_siteadmin()){
-	//				$mycourses = $DB->get_records_sql("SELECT * FROM {course} where id > 1");
-	//		   }else{
-	//				$mycourses = enrol_get_users_courses($USER->id);
-	//		   }
-	//		   
-	//		   if($mycourses){
-	//				$coursefileurl = $OUTPUT->pix_url('handflag');
-	//				$img = html_writer:: empty_tag('img',array('src'=>$coursefileurl, 'width'=>'185px'));		
-	//				
-	//				$tabledata = array();
-	//				$totalrows = count($mycourses);
-	//				if($totalrows >= 4){
-	//					 $remainder = fmod($totalrows, 4);
-	//				}else{
-	//					 $remainder = $totalrows;
-	//				}
-	//				
-	//				$i = 1;
-	//				$j = 1;
-	//				$row = array();
-	//				foreach($mycourses as $course){
-	//					// if ($i == 1){
-	//					//	  $row = array();
-	//					// }
-	//					 
-	//					 
-	//					// if($i == 0 || $i == 4){
-	//					//	  $i = 0;
-	//					//	  $allcourses .= html_writer:: start_tag('tr', array());
-	//					// }
-	//					//$allcourses .= html_writer:: start_tag('td', array());
-	//					$allcourses = html_writer:: tag('div', $img, array());
-	//					$courserecord = $DB->get_record('course', array('id'=>$course->id));
-	//					$allcourses .= html_writer:: tag('div', $courserecord->fullname, array('style'=>'font-size:16px;'));
-	//					if($courserecord->summary){
-	//						  $allcourses .= html_writer:: tag('div', $courserecord->summary, array('class'=>'course_description'));
-	//					}else{
-	//						  $allcourses .= html_writer:: tag('div', '', array('class'=>'course_description'));
-	//					}
-	//					$row[] = $allcourses;
-	//					//$allcourses .= html_writer:: end_tag('td');
-	//					//if($i == 3){
-	//					//	  $allcourses .= html_writer:: end_tag('tr');
-	//					// }
-	//					//$i++;
-	//					
-	//					 if($i == 4  || ($j == $totalrows)){
-	//						  if($j == $totalrows){
-	//							   if($remainder == 0){
-	//									$tabledata[] = $row;
-	//							   }elseif($remainder == 1){
-	//									$row[] = '';
-	//									$row[] = '';
-	//									$row[] = '';
-	//									$tabledata[] = $row;
-	//							   }elseif($remainder == 2){
-	//									$row[] = '';
-	//									$row[] = '';
-	//									$tabledata[] = $row;
-	//							   }elseif($remainder == 3){
-	//									//print_object($row);
-	//									$row[] = '';
-	//									$tabledata[] = $row;
-	//							   }  
-	//						  }else{
-	//							   $tabledata[] = $row;
-	//						  }
-	//						  $row = array();
-	//						  $i = 0;
-	//					 }
-	//					 $i++;
-	//					 $j++;
-	//					 
-	//				}
-	//				//$allcourses .= html_writer:: end_tag('table');
-	//				$table = new html_table();
-	//				$table->id = 'myenrolledcourses';
-	//				$table->attributes = array('cellpadding'=>10);
-	//				$table->head = array('', '', '', '');
-	//				$table->data = $tabledata;
-	//				$enrollcourses = html_writer:: table($table);
-	//		   }else{
-	//				$enrollcourses = '-- No courses --';
-	//		   }			   
-	//		   
-	//		   $data .= html_writer:: tag('div', $enrollcourses, array('id'=>'mycourses'));
-	//		   $data .= html_writer:: tag('div', $mylearnignplan_tabcontent, array('id'=>'mylearningplans'));
-	//		   //$data .= html_writer:: tag('div', '<p>This is My learning tab content</p>', array('id'=>'mylearningplans'));
-	//		   
-	//		   
-	//	  $data .= html_writer:: end_tag('div');
-	//	  
-	//	  return $data;
-	//	  
-	// }
+	function display_tabs(){
+		  global $DB, $USER, $OUTPUT, $PAGE;
+	
+		  $data = '';
+		  $data = html_writer:: start_tag('div', array('id'=>'mytabs'));
+			   $data .= html_writer:: start_tag('ul', array());
+			   
+					$tab1url = new moodle_url('#mycourses', array());
+					$tab1link = html_writer:: link($tab1url, get_string('mycourses'), array());
+					
+					$tab2url = new moodle_url('#mylearningplans', array());
+					$tab2link = html_writer:: link($tab2url, 'My Learing plans', array());
+					
+					$data .= html_writer:: tag('li', $tab1link,array());
+					$data .= html_writer:: tag('li', $tab2link ,array());
+					
+			   $data .= html_writer:: end_tag('ul');
+			   
+			   if(is_siteadmin()){
+					$mycourses = $DB->get_records_sql("SELECT * FROM {course} where id > 1");
+			   }else{
+					$mycourses = enrol_get_users_courses($USER->id);
+			   }
+			   
+			   if($mycourses){
+					$coursefileurl = $OUTPUT->pix_url('handflag');
+					$img = html_writer:: empty_tag('img',array('src'=>$coursefileurl, 'width'=>'185px'));		
+					
+					$tabledata = array();
+					$totalrows = count($mycourses);
+					if($totalrows >= 4){
+						 $remainder = fmod($totalrows, 4);
+					}else{
+						 $remainder = $totalrows;
+					}
+					
+					$i = 1;
+					$j = 1;
+					$row = array();
+					foreach($mycourses as $course){
+						// if ($i == 1){
+						//	  $row = array();
+						// }
+						 
+						 
+						// if($i == 0 || $i == 4){
+						//	  $i = 0;
+						//	  $allcourses .= html_writer:: start_tag('tr', array());
+						// }
+						//$allcourses .= html_writer:: start_tag('td', array());
+						$allcourses = html_writer:: tag('div', $img, array());
+						$courserecord = $DB->get_record('course', array('id'=>$course->id));
+						$allcourses .= html_writer:: tag('div', $courserecord->fullname, array('style'=>'font-size:16px;'));
+						if($courserecord->summary){
+							  $allcourses .= html_writer:: tag('div', $courserecord->summary, array('class'=>'course_description'));
+						}else{
+							  $allcourses .= html_writer:: tag('div', '', array('class'=>'course_description'));
+						}
+						$row[] = $allcourses;
+						//$allcourses .= html_writer:: end_tag('td');
+						//if($i == 3){
+						//	  $allcourses .= html_writer:: end_tag('tr');
+						// }
+						//$i++;
+						
+						 if($i == 4  || ($j == $totalrows)){
+							  if($j == $totalrows){
+								   if($remainder == 0){
+										$tabledata[] = $row;
+								   }elseif($remainder == 1){
+										$row[] = '';
+										$row[] = '';
+										$row[] = '';
+										$tabledata[] = $row;
+								   }elseif($remainder == 2){
+										$row[] = '';
+										$row[] = '';
+										$tabledata[] = $row;
+								   }elseif($remainder == 3){
+										//print_object($row);
+										$row[] = '';
+										$tabledata[] = $row;
+								   }  
+							  }else{
+								   $tabledata[] = $row;
+							  }
+							  $row = array();
+							  $i = 0;
+						 }
+						 $i++;
+						 $j++;
+						 
+					}
+					//$allcourses .= html_writer:: end_tag('table');
+					$table = new html_table();
+					$table->id = 'myenrolledcourses';
+					$table->attributes = array('cellpadding'=>10);
+					$table->head = array('', '', '', '');
+					$table->data = $tabledata;
+					$enrollcourses = html_writer:: table($table);
+			   }else{
+					$enrollcourses = '-- No courses --';
+			   }			   
+			   
+			   $data .= html_writer:: tag('div', $enrollcourses, array('id'=>'mycourses'));
+			   $data .= html_writer:: tag('div', $mylearnignplan_tabcontent, array('id'=>'mylearningplans'));
+			   //$data .= html_writer:: tag('div', '<p>This is My learning tab content</p>', array('id'=>'mylearningplans'));
+			   
+			   
+		  $data .= html_writer:: end_tag('div');
+		  
+		  return $data;
+		  
+	}
 	 
 	 
 	function display_tabs_and_its_content(){
